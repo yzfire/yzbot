@@ -382,6 +382,20 @@ client.on("message", msg => { // This function is called if a message is sent
  	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
 }else if(command === "uptime"){
   msg.reply(`I have been online for ${Math.floor(process.uptime())} seconds.`);
+}else if(command === "choice"){
+  let itemOne = args[0];
+  let itemTwo = args[1];
+  let choices = [itemOne, itemTwo];
+  let randIndex = Math.floor(Math.random() * 2);
+  if(!itemOne){ // if item one isn't truthy
+    msg.reply("please enter two items to choose from!");
+  }else if(!itemTwo){ // if item two is not a truthy value
+    msg.reply("please enter another item to choose from!");
+  }else if(args.length > 2){ // if the args array is greater than 3 elements,
+    msg.reply("you have entered too many items to choose from!");
+  }else{ // otherwise send a message back.
+    msg.reply(`the bot has chosen **${choices[randIndex]}!`);
+  }
 }
 });
 

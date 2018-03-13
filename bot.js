@@ -44,7 +44,7 @@ const getUptime = () => {
 }
 
 client.on("message", msg => { // This function is called if a message is sent
-	//if(!msg.guild.available) return;
+	if(!msg.guild.available) return;
 	let yzbotGM = msg.guild.members.find("id", "418827411350618122");
 	let guildMember = msg.member; // I should have used this from the start, it offers lots more in terms of functionalitiy, but I don't want to rewrite a lot of code.
 	let u = msg.author; // This variable represents the message's author.
@@ -253,8 +253,8 @@ client.on("message", msg => { // This function is called if a message is sent
 							.setTimestamp()
 							.setFooter("Ban log from yzbot")
 							client.channels.get(punishmentLogs).send({embed}); // Send the embed in #punishment-logs
-						}else return;
-				}}}else{
+						}else {return;}
+				}}else{
 					msg.reply("I do not have the `BAN_MEMBERS` permission!")
 				}
 		}else{ // If the member can't ban people
@@ -422,7 +422,7 @@ client.on("guildBanRemove", (guild, user) => {
 });
 
 client.on("guildMemberAdd", member => {
-	if(!guild.id == "396799859900022784") return;
+	if(!member.guild.id == "396799859900022784") return;
 	const embed = new Discord.RichEmbed()
 			.setTitle("Join Log:")
 			//.setThumbnail(thumbnailURL)

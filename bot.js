@@ -36,13 +36,6 @@ function clean(text) {
       return text;
 }
 
-const getUptime = () => {
-	//let dateObject = new Date();
-	//let timenow = dateObject.valueOf();
-	let currentUptime = client.uptime;
-
-}
-
 client.on("message", msg => { // This function is called if a message is sent
 	if(!msg.guild.available) return;
 	let yzbotGM = msg.guild.members.find("id", "418827411350618122");
@@ -385,7 +378,9 @@ client.on("message", msg => { // This function is called if a message is sent
 	}
  }else if(command === "invite"){
  	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
- }
+}else if(command === "uptime"){
+  msg.reply(`I have been online for ${process.uptime} seconds.`);
+}
 });
 
 client.on("guildBanAdd", (guild, user) => {

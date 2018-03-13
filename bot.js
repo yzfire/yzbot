@@ -1,12 +1,26 @@
+// Don't change these lines of code. This is to allow the bot to remain hosted on glitch.com 24/7.
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
+
 // Main variables at the top of the program.
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = ".";
-const token = "the bot's token";
+const token = process.env.TOKEN;
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}`);
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | Now with optional arguments for .avatar and .userinfo!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
 	client.user.setStatus("dnd");
 });
 
@@ -31,6 +45,7 @@ const getUptime = () => {
 
 client.on("message", msg => { // This function is called if a message is sent
 	//if(!msg.guild.available) return;
+	let yzbotGM = msg.guild.members.find("id", "418827411350618122");
 	let guildMember = msg.member; // I should have used this from the start, it offers lots more in terms of functionalitiy, but I don't want to rewrite a lot of code.
 	let u = msg.author; // This variable represents the message's author.
 	if(u.bot) return;
@@ -205,6 +220,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			console.log(`.avatar was executed by ${u.username}`);
 		}
 	}else if(command === "ban"){
+		if(yzbotGM.hasPermission("BAN_MEMBERS")){
 		if (msg.member.hasPermission('BAN_MEMBERS')){ // If the member can ban people,
 			let reason = args.slice(1).join(' ');
 			let member = msg.mentions.members.first();
@@ -227,24 +243,27 @@ client.on("message", msg => { // This function is called if a message is sent
 					}
 					setTimeout(banMemb, 1500);
 
-					msg.reply(`user ${member} banned successfully.`);
-					let embed = new Discord.RichEmbed()
-						.setTitle("yzbot banned a member")
-						.addField("User Banned:", `${member}`)
-						.addField("Moderator:", `${msg.author}`)
-						.addField("Reason:", `${reason}`)
-						.setTimestamp()
-						.setFooter("Ban log from yzbot")
-						client.channels.get(punishmentLogs).send({embed}); // Send the embed in #punishment-logs
+					msg.reply(`user ${member} banned successfully!`);
+					if(msg.guild.id == "396799859900022784"){
+						let embed = new Discord.RichEmbed()
+							.setTitle("yzbot banned a member")
+							.addField("User Banned:", `${member}`)
+							.addField("Moderator:", `${msg.author}`)
+							.addField("Reason:", `${reason}`)
+							.setTimestamp()
+							.setFooter("Ban log from yzbot")
+							client.channels.get(punishmentLogs).send({embed}); // Send the embed in #punishment-logs
+						}else return;
+				}}}else{
+					msg.reply("I do not have the `BAN_MEMBERS` permission!")
 				}
 		}else{ // If the member can't ban people
-			return msg.reply("you do not have the `BAN_MEMBERS` permission.");
+			return msg.reply("you do not have the `BAN_MEMBERS` permission!");
 		}
 	}else if(command === "hackban"){
 		if(u.id !== devId) return;
 		let id = args[0];
 		let reason = args.slice(1).join(' ');
-
 		if(msg.member.hasPermission("BAN_MEMBERS")){
 			if(!id || id.length !== 18){
 				return msg.reply("please specify a valid user ID!")
@@ -337,7 +356,7 @@ client.on("message", msg => { // This function is called if a message is sent
 		const embed = new Discord.RichEmbed()
 			.setTitle("Information about yzbot")
 			.setThumbnail(`${client.user.avatarURL}`)
-			.setDescription("yzbot is a bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
+			.setDescription("yzbot is an open-source Discord bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
 			.addField("Developer:", `yzfire#6822 (<@${devId}>)`)
 			.addField("Online Since:", `${client.readyAt}`, true)
 			.addField("ID:", `${client.user.id}`)
@@ -345,6 +364,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField("Servers:", `${client.guilds.size}`)
 			.addField("Channels:", `${client.channels.size}`, true)
 			.addField("Created on:", `${client.user.createdAt}`)
+			.addField("GitHub:", "https://github.com/yzfire/yzbot")
 			.setFooter(`yzbot information (requested by ${u.username}#${u.discriminator})`)
 			.setTimestamp()
 			//.addField("Members", `${client.guilds.members.size}`)
@@ -363,7 +383,9 @@ client.on("message", msg => { // This function is called if a message is sent
 		}else{
 			msg.reply("I do not have the ``CHANGE_NICKNAME`` permission!");
 	}
-	}
+ }else if(command === "invite"){
+ 	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
+ }
 });
 
 client.on("guildBanAdd", (guild, user) => {
@@ -371,6 +393,7 @@ client.on("guildBanAdd", (guild, user) => {
 	else{
 		client.channels.get(generalChatId).send(`${user.username.toString()} didn't leave, but got banned, from ${guild.name}. Good riddance, ${user.username.toString()}.`);
 		console.log(`A ban was added to ${user.username.toString()} in ${guild.name}`);
+		if(!guild.id == "396799859900022784") return;
 		let thumbnailURL = "https://cdn.discordapp.com/attachments/397029145613172736/422036219220983818/397497336907169792.png";
 		let embed = new Discord.RichEmbed()
 			.setTitle("Ban Log:")
@@ -386,6 +409,7 @@ client.on("guildBanRemove", (guild, user) => {
 	if(!guild.available) return;
 	else{
 		console.log(`A ban was removed from ${user.username.toString()}`);
+		if(!guild.id == "396799859900022784") return;
 		let thumbnailURL = "";
 		let embed = new Discord.RichEmbed()
 			.setTitle("Unban Log:")
@@ -398,6 +422,7 @@ client.on("guildBanRemove", (guild, user) => {
 });
 
 client.on("guildMemberAdd", member => {
+	if(!guild.id == "396799859900022784") return;
 	const embed = new Discord.RichEmbed()
 			.setTitle("Join Log:")
 			//.setThumbnail(thumbnailURL)

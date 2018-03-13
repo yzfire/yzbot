@@ -1,6 +1,6 @@
 # yzbot
 A discord bot made by yzfire#6822. This is my first real bot, so please be patient with regards to speed of development and things such as that. 
-It features:
+It features:  
 • userinfo command with optional argument to mention a user.  
 • help command to give some help and (a bit) of information about yzbot.  
 • A prefix "."  

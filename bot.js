@@ -137,6 +137,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField(".ping", "Returns the bot response time.", true)
 			.addField(".addrole (member) (role) (any order)", "Adds the role specified to the user mentioned.", true)
 			.addField(".hackban (id) (reason)", "Bans the member corresponding to the ID provided, for the reason specified.", true)
+      .addField(".choose (item one) (item two)", "Sends a random choice to the channel. Currently, the items can't contain spaces, but I will fix that in due course.", true)
 			.addBlankField()
 			.addField("Dev-Only", "These commands are dev-only. Don't try to use them!", true)
 			.addField(".devonlycmd", "Type this command in and you get trolled. Unless you're yzfire, of course.", true)
@@ -382,7 +383,7 @@ client.on("message", msg => { // This function is called if a message is sent
  	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
 }else if(command === "uptime"){
   msg.reply(`I have been online for ${Math.floor(process.uptime())} seconds.`);
-}else if(command === "choice"){
+}else if(command === "choose"){
   let itemOne = args[0];
   let itemTwo = args[1];
   let choices = [itemOne, itemTwo];
@@ -394,7 +395,7 @@ client.on("message", msg => { // This function is called if a message is sent
   }else if(args.length > 2){ // if the args array is greater than 3 elements,
     msg.reply("you have entered too many items to choose from!");
   }else{ // otherwise send a message back.
-    msg.reply(`the bot has chosen **${choices[randIndex]}!`);
+    msg.reply(`the bot has chosen **${choices[randIndex]}**!`);
   }
 }
 });

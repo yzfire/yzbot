@@ -379,7 +379,7 @@ client.on("message", msg => { // This function is called if a message is sent
  }else if(command === "invite"){
  	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
 }else if(command === "uptime"){
-  msg.reply(`I have been online for ${process.uptime()} seconds.`);
+  msg.reply(`I have been online for ${Math.floor(process.uptime())} seconds.`);
 }
 });
 

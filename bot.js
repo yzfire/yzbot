@@ -104,11 +104,12 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField("Join Date:", `${member.joinedAt}`)
 			.addField("Status", `${status}`)
 			msg.channel.send({embed});
+      console.log(`.userinfo was executed by ${u.username}`)
 	}
 	}else if(command === "devonlycmd"){ // devonlycmd cmd
 		if(u.id !== devId){ // if the id isn't mine
 			msg.channel.send("Hey succ yzfire's long ducc like succ, you narb."); // send HATE
-			console.log(`.devonlycmd was executed by ${u.username}, who wasn't yzfire`)
+			console.log(`.devonlycmd was executed by ${u.username}, not yzfire`)
 		}else{
 			msg.channel.send("owo hi you're my saviour"); // else send LOVE
 			console.log(`.devonlycmd was executed by ${u.username}`)
@@ -169,6 +170,7 @@ client.on("message", msg => { // This function is called if a message is sent
 		console.log(`.ping was executed by ${u.username}`);
 	}else if(command === "shutdown"){
 		if(u.id !== devId){
+      console.log(`.shutdown (ATTEMPTED EXECUTION) by ${u.username}`)
 			let thumbnail = "https://cdn.discordapp.com/attachments/397038645095432193/422063977061810178/1f6ab.png";
 			const firstEmbed = new Discord.RichEmbed()
 				.setThumbnail(thumbnail)
@@ -185,7 +187,9 @@ client.on("message", msg => { // This function is called if a message is sent
 				.setTimestamp()
 				client.channels.get(logsId).send({embed});
 				client.channels.get(logsId).send(`<@${devId}>, someone attempted to shut your bot down. Deal with them.`);
+        console.log(`.shutdown (ATTEMPTED EXECUTION) by ${u.username}`)
 		}else{
+      console.log(`.shutdown was executed by ${u.username}`)
 			msg.channel.send("Bot shutting down in 3 seconds...");
 			const embed = new Discord.RichEmbed()
 				.setTitle("Bot Shutdown:")
@@ -197,6 +201,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			setTimeout(process.exit, 3000); // Shutdown the bot in 3 seconds.
 		}
 	}else if(command === "avatar"){
+    console.log(`.avatar was executed by ${u.username}`)
 		let member = msg.mentions.members.first(); // GuildMember class object
 		if(!member){
 		let embed = new Discord.RichEmbed()
@@ -227,6 +232,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			}else if(!reason){ // if reason unspecified
 	    		return msg.reply("please provide a reason!");
 				}else{
+          console.log(`.ban was executed by ${u.username}`);
 					const firstEmbed = new Discord.RichEmbed()
 						.setTitle(`You were banned in ${msg.guild.name}`)
 						.addField("Ban Reason", `${reason}`)
@@ -238,7 +244,6 @@ client.on("message", msg => { // This function is called if a message is sent
 						member.ban(reason + ` | Banned by user ${msg.author.tag} using yzbot`);
 					}
 					setTimeout(banMemb, 1500);
-
 					msg.reply(`user ${member} banned successfully!`);
 					if(msg.guild.id == "396799859900022784"){
 						let embed = new Discord.RichEmbed()
@@ -252,11 +257,14 @@ client.on("message", msg => { // This function is called if a message is sent
 						}else {return;}
 				}}else{
 					msg.reply("I do not have the `BAN_MEMBERS` permission!")
+          console.log(`.ban (ATTEMPTED EXECUTION) by ${u.username}`);
 				}
 		}else{ // If the member can't ban people
 			return msg.reply("you do not have the `BAN_MEMBERS` permission!");
+      console.log(`.ban (ATTEMPTED EXECUTION) by ${u.username}`);
 		}
 	}else if(command === "hackban"){
+    console.log(`.hackban was executed by ${u.username}`);
 		if(u.id !== devId) return;
 		let id = args[0];
 		let reason = args.slice(1).join(' ');
@@ -278,8 +286,10 @@ client.on("message", msg => { // This function is called if a message is sent
 		let message = args.join(" ").toString()
 		msg.channel.send(message);
 		msg.delete();
+    console.log(`.say was executed by ${u.username}`);
 	}else if(command === "serverinfo"){
 		if(!msg.guild.available) return;
+    console.log(`.serverinfo was executed by ${u.username}`);
 		let guild = msg.guild;
 		let rolesArr = guild.roles.array();
 		let highestRole = rolesArr[0];
@@ -316,6 +326,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			msg.channel.send({embed});
 	}else if(command === "eval"){
 		if(u.id !== devId) return;
+    console.log(`.eval was executed by ${u.username}`);
 		try {
       const code = args.join(" ");
       let evaled = eval(code);
@@ -331,6 +342,7 @@ client.on("message", msg => { // This function is called if a message is sent
 
 	else if(command === "addrole"){
 		if(u.id !== devId) return;
+    console.log(`.addrole was executed by ${u.username}`);
 	  let member = msg.mentions.members.first();
 		let roleToAdd = args[1].toString(); // the third thing in the command (.addrole @yzfire (ROLE HERE))
 	}else if(command === "botinfo"){
@@ -367,6 +379,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			msg.channel.send({embed})
 	}else if(command === "setbotnick"){
 		if(u.id!==devId) return;
+    console.log(`.setbotnick was executed by ${u.username}`);
 		let yzbot = msg.guild.members.find("id", "418827411350618122")
 		if(yzbot.hasPermission("CHANGE_NICKNAME")){
 			let nickname = args.join(" ");
@@ -380,10 +393,13 @@ client.on("message", msg => { // This function is called if a message is sent
 			msg.reply("I do not have the ``CHANGE_NICKNAME`` permission!");
 	}
  }else if(command === "invite"){
+   console.log(`.invite was executed by ${u.username}`);
  	client.generateInvite(335932631).then(link=>msg.channel.send(`**Invite yzbot to your server:** ${link}`));
 }else if(command === "uptime"){
+  console.log(`.uptime was executed by ${u.username}`);
   msg.reply(`I have been online for ${Math.floor(process.uptime())} seconds.`);
 }else if(command === "choose"){
+  console.log(`.choose was executed by ${u.username}`);
   let itemOne = args[0];
   let itemTwo = args[1];
   let choices = [itemOne, itemTwo];
@@ -445,11 +461,11 @@ client.on("guildMemberAdd", member => {
 });
 
 client.on("guildCreate", guild => {
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | Now with optional arguments for .avatar and .userinfo!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
 });
 
 client.on("guildDelete", guild => {
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | Now with optional arguments for .avatar and .userinfo!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
 });
 
 client.login(token);

@@ -37,7 +37,7 @@ function clean(text) {
 }
 
 client.on("message", msg => { // This function is called if a message is sent
-	if(!msg.guild.available) return;
+	//if(!msg.guild.available) return;
 	let yzbotGM = msg.guild.members.find("id", "418827411350618122");
 	let guildMember = msg.member; // I should have used this from the start, it offers lots more in terms of functionalitiy, but I don't want to rewrite a lot of code.
 	let u = msg.author; // This variable represents the message's author.

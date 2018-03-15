@@ -37,12 +37,11 @@ function clean(text) {
 }
 
 client.on("message", msg => { // This function is called if a message is sent
-	//if(!msg.guild.available) return;
+  if(msg.channel.type == "dm" || msg.channel.type == "group" || msg.author.bot || !msg.content.startsWith(prefix)) return;
+  if(!msg.guild.available) return;
 	let yzbotGM = msg.guild.members.find("id", "418827411350618122");
 	let guildMember = msg.member; // I should have used this from the start, it offers lots more in terms of functionalitiy, but I don't want to rewrite a lot of code.
 	let u = msg.author; // This variable represents the message's author.
-	if(u.bot) return;
-	if(!msg.content.startsWith(prefix)) return;
 	const args = msg.content.slice(prefix.length).trim().split(/ +/g); // Removes prefix, deletes whitespace, splits the command into an array where we have the command and anything that the user delimits with a space.
   const command = args.shift().toLowerCase(); // Remove the command from the args variable and store it here instead, make it lowercase to avoid case-sensitivity issues
 	//if(msg.system) return;

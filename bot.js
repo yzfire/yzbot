@@ -260,8 +260,7 @@ client.on("message", msg => { // This function is called if a message is sent
 	    		return msg.reply("please provide a reason!");
       }else if(u.id === member.id){
           return msg.reply("you can't ban yourself!");
-      }
-				}else{
+			}else{
           console.log(`.ban was executed by ${u.username}`);
 					const firstEmbed = new Discord.RichEmbed()
 						.setTitle(`You were banned in ${msg.guild.name}`)

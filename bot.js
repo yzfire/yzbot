@@ -16,6 +16,8 @@ setInterval(() => {
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = ".";
+const fs = require("fs");
+const helpJSON = JSON.parse(fs.readFileSync("./Help.json", "utf8"));
 const token = process.env.TOKEN;
 
 client.on("ready", () => {
@@ -114,39 +116,65 @@ client.on("message", msg => { // This function is called if a message is sent
 			console.log(`.devonlycmd was executed by ${u.username}`)
 		}
 	}else if(command === "help"){ // Help command
-		msg.reply("help has been sent to your DMs! | :outbox_tray:");
-		const thumbnailURL = "http://logosrated.net/wp-content/uploads/parser/INFORMATION-VECTOR-SIGN-Logo-1.gif";
-		const authorImgURL = "https://cdn.discordapp.com/avatars/418827411350618122/0323f8a524893b46046dd25d64ec91f1.png"
-		const embed = new Discord.RichEmbed()
-			.setAuthor("yzbot", authorImgURL) // Sets the author of the embed as yzbot and puts the image url constant as the image.
-			.setColor("#5532f1")
-			.setTitle("yzbot help and info:")
-			.setThumbnail(thumbnailURL)
-			.setDescription("yzbot is a bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
-			.addField(".help", "Sends help and information about the bot to the user's DMs.", true)
-			.addField(".userinfo (optional mention)", "Sends information about the user mentioned to the current channel, or your own if you left out the mention.", true)
-			.addField(".lenny", "Sends a lenny face to the current channel.", true)
-			.addField(".narbrating", "Your narb rating. This changes every time you run the command.", true)
-			.addField(".ban (mention) (reason)", "Bans the user mentioned from the server (requires 'BAN_MEMBERS' permission).", true)
-			.addField(".avatar (optional mention)", "Shows the avatar of the mentioned user, or your avatar if you left out the mention.", true)
-			.addField(".serverinfo", "Prints information about the server that you sent the command in.", true)
-      .addField(".uptime", "Sends the amount of time the bot has been up for in seconds. I am working on making this a more readable timestamp such as 'x hours, y minutes and z seconds'.", true)
-      .addField(".botinfo", "Sends information about the bot to the current channel.")
-			.addBlankField()
-			.addField("In Development", "These commands are in development and you will most likely get an error if you try to use them.", true)
-			.addField(".ping", "Returns the bot response time.", true)
-			.addField(".addrole (member) (role) (any order)", "Adds the role specified to the user mentioned.", true)
-			.addField(".hackban (id) (reason)", "Bans the member corresponding to the ID provided, for the reason specified.", true)
-      .addField(".choose (item one) (item two)", "Sends a random choice to the channel. Currently, the items can't contain spaces, but I will fix that in due course.", true)
-			.addBlankField()
-			.addField("Dev-Only", "These commands are dev-only. Don't try to use them!", true)
-			.addField(".devonlycmd", "Type this command in and you get trolled. Unless you're yzfire, of course.", true)
-			.addField(".shutdown", "This command will shut down the bot.", true)
-			.addField(".say", "This command will make the bot say something.", true)
-			.addField(".eval", "Evaluates some JavaScript code and prints a result.", true)
-			.setTimestamp()
-			u.send({embed});
-		console.log(`.help was executed by ${u.username}`)
+    let cmd = args[0];
+    if(!cmd){
+  		msg.reply("help has been sent to your DMs! | :outbox_tray:");
+  		const thumbnailURL = "http://logosrated.net/wp-content/uploads/parser/INFORMATION-VECTOR-SIGN-Logo-1.gif";
+  		const authorImgURL = "https://cdn.discordapp.com/avatars/418827411350618122/0323f8a524893b46046dd25d64ec91f1.png"
+  		const embed = new Discord.RichEmbed()
+  			.setAuthor("yzbot", authorImgURL) // Sets the author of the embed as yzbot and puts the image url constant as the image.
+  			.setColor("#5532f1")
+  			.setTitle("yzbot help and info:")
+  			.setThumbnail(thumbnailURL)
+  			.setDescription("yzbot is a bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
+  			.addField(".help", "Sends help and information about the bot to the user's DMs.", true)
+  			.addField(".userinfo (optional mention)", "Sends information about the user mentioned to the current channel, or your own if you left out the mention.", true)
+  			.addField(".lenny", "Sends a lenny face to the current channel.", true)
+  			.addField(".narbrating", "Your narb rating. This changes every time you run the command.", true)
+  			.addField(".ban (mention) (reason)", "Bans the user mentioned from the server (requires 'BAN_MEMBERS' permission).", true)
+  			.addField(".avatar (optional mention)", "Shows the avatar of the mentioned user, or your avatar if you left out the mention.", true)
+  			.addField(".serverinfo", "Prints information about the server that you sent the command in.", true)
+        .addField(".uptime", "Sends the amount of time the bot has been up for in seconds. I am working on making this a more readable timestamp such as 'x hours, y minutes and z seconds'.", true)
+        .addField(".botinfo", "Sends information about the bot to the current channel.")
+  			.addBlankField()
+  			.addField("In Development", "These commands are in development and you will most likely get an error if you try to use them.", true)
+  			.addField(".ping", "Returns the bot response time.", true)
+  			.addField(".addrole (member) (role) (any order)", "Adds the role specified to the user mentioned.", true)
+  			.addField(".hackban (id) (reason)", "Bans the member corresponding to the ID provided, for the reason specified.", true)
+        .addField(".choose (item one) (item two)", "Sends a random choice to the channel. Currently, the items can't contain spaces, but I will fix that in due course.", true)
+  			.addBlankField()
+  			.addField("Dev-Only", "These commands are dev-only. Don't try to use them!", true)
+  			.addField(".devonlycmd", "Type this command in and you get trolled. Unless you're yzfire, of course.", true)
+  			.addField(".shutdown", "This command will shut down the bot.", true)
+  			.addField(".say", "This command will make the bot say something.", true)
+  			.addField(".eval", "Evaluates some JavaScript code and prints a result.", true)
+  			.setTimestamp()
+  			u.send({embed});
+    }else{
+      const acceptedList = ["help", "userinfo", "lenny", "narbrating", "ban", "avatar", "serverinfo", "uptime", "botinfo"];
+      if(acceptedList.indexOf(cmd) !== -1){
+        let usage = helpJSON["commands"][cmd]["usage"];
+        let description = helpJSON["commands"][cmd]["description"];
+        let examples = helpJSON["commands"][cmd]["examples"];
+        let arrexamples = [];
+        for(let i = 0; i < examples.length; i++){
+          arrexamples.push(examples[i]);
+        }
+        let strexamples = arrexamples.join("\n");
+        const embed = new Discord.RichEmbed()
+          .setTitle(`Help for command .${cmd}`)
+          .addField("Usage", `${usage}`)
+          .addField("Description", `${description}`)
+          .addField("Examples", `${strexamples}`)
+          msg.channel.send({embed});
+      }else{
+        msg.reply("that command does not exist, or is not included in this help command! (commands that are not dev-only or in development).\n\nSending the list of usable commands to your DMs! | :outbox_tray:");
+        let len = acceptedList.length - 1;
+        let randIndex = Math.floor(Math.random() * len);
+        u.send(`**The list of commands that can be used in .help (cmd):**\n\n ${acceptedList.join(", ")}\n\n**Example:** .help ${acceptedList[randIndex]}`);
+      }
+    }
+    console.log(`.help was executed by ${u.username}`)
 	}else if(command === "lenny"){ // Lenny command
 		msg.channel.send("( ͡° ͜ʖ ͡°)");
 		console.log(`.lenny was executed by ${u.username}`)

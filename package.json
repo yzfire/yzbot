@@ -18,6 +18,7 @@
   "homepage": "https://github.com/yzbot",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "sloc": "^0.2.0"
   }
 }

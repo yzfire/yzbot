@@ -17,7 +17,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = ".";
 const fs = require("fs");
-const helpJSON = JSON.parse(fs.readFileSync("./Help.json", "utf8"));
+const helpJSON = JSON.parse(fs.readFileSync("./help.json", "utf8"));
 const token = process.env.TOKEN;
 
 client.on("ready", () => {

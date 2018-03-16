@@ -171,7 +171,7 @@ client.on("message", msg => { // This function is called if a message is sent
         msg.reply("that command does not exist, or is not included in this help command! (commands that are not dev-only or in development).\n\nSending the list of usable commands to your DMs! | :outbox_tray:");
         let len = acceptedList.length - 1;
         let randIndex = Math.floor(Math.random() * len);
-        u.send(`**The list of commands that can be used in .help (cmd):**\n\n ${acceptedList.join(", ")}\n\n**Example:** .help ${acceptedList[randIndex]}`);
+        u.send(`**The list of commands that can be used in .help (cmd):**\n\n${acceptedList.join(", ")}\n\n**Example:** .help ${acceptedList[randIndex]}`);
       }
     }
     console.log(`.help was executed by ${u.username}`)

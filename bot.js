@@ -22,7 +22,7 @@ const token = process.env.TOKEN;
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}`);
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | Added .help (cmd) command. Try it out!`);
 	client.user.setStatus("dnd");
 });
 
@@ -127,8 +127,8 @@ client.on("message", msg => { // This function is called if a message is sent
   			.setTitle("yzbot help and info:")
   			.setThumbnail(thumbnailURL)
   			.setDescription("yzbot is a bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
-  			.addField(".help", "Sends help and information about the bot to the user's DMs.", true)
   			.addField(".userinfo (optional mention)", "Sends information about the user mentioned to the current channel, or your own if you left out the mention.", true)
+        .addField(".help (optional command)", "Sends help and information about the command specified in the current channel. If the command is left out, information about the bot and all commands are sent to the user's DMs.", true)
   			.addField(".lenny", "Sends a lenny face to the current channel.", true)
   			.addField(".narbrating", "Your narb rating. This changes every time you run the command.", true)
   			.addField(".ban (mention) (reason)", "Bans the user mentioned from the server (requires 'BAN_MEMBERS' permission).", true)
@@ -488,11 +488,11 @@ client.on("guildMemberAdd", member => {
 });
 
 client.on("guildCreate", guild => {
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | Added .help (cmd) command. Try it out!`);
 });
 
 client.on("guildDelete", guild => {
-	client.user.setActivity(`.help | In ${client.guilds.size} servers | BOT NOW PUBLIC! TYPE .invite TO GET BOT INVITE LINK!`);
+	client.user.setActivity(`.help | In ${client.guilds.size} servers | Added .help (cmd) command. Try it out!`);
 });
 
 client.login(token);

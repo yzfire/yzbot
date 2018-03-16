@@ -258,6 +258,9 @@ client.on("message", msg => { // This function is called if a message is sent
 	    		return msg.reply("the specified user has a higher or equal role hierarchy position than one or both of us!");
 			}else if(!reason){ // if reason unspecified
 	    		return msg.reply("please provide a reason!");
+      else if(u.id === member.id){
+          return msg.reply("you can't ban yourself!");
+      }
 				}else{
           console.log(`.ban was executed by ${u.username}`);
 					const firstEmbed = new Discord.RichEmbed()

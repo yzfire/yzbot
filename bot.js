@@ -250,7 +250,7 @@ client.on("message", msg => { // This function is called if a message is sent
 		}
 	}else if(command === "ban"){
 		if(yzbotGM.hasPermission("BAN_MEMBERS")){
-		if (msg.member.hasPermission('BAN_MEMBERS')){ // If the member can ban people,
+		  if(msg.member.hasPermission('BAN_MEMBERS')){ // If the member can ban people,
 			let reason = args.slice(1).join(' ');
 			let member = msg.mentions.members.first();
   		if(!member){ // if member not specified
@@ -452,7 +452,7 @@ client.on("message", msg => { // This function is called if a message is sent
         }else if(amount < 2 || amount > 99){
           return msg.reply("you must enter a number between 2 and 99 messages!");
         }else{
-          msg.channel.fetchMessages({ limit: amount }).then(m=>msg.channel.bulkDelete(m));
+          msg.channel.fetchMessages({ limit: amount+1 }).then(m=>msg.channel.bulkDelete(m));
           const rep = msg.reply(`cleared **${amount} messages** successfully!`)
           .then((themsg) => {
             const del = () => themsg.delete();
@@ -465,7 +465,21 @@ client.on("message", msg => { // This function is called if a message is sent
     }else{
       return msg.reply("I do not have the ``MANAGE_MESSAGES`` permission!");
     }
-  }
+}else if(command === "randomtank"){
+  if(msg.guild.id !== "396799859900022784") return;
+  const tanks = ["Triple Twin", "Battleship", "Octo Tank", "Auto 5",
+   "Penta Shot", "Spread Shot", "Triplet", "Overlord", "Necromancer", "Manager",
+   "Overtrapper", "Battleship", "Factory", "Ranger", "Stalker", "Booster",
+   "Fighter", "Hybrid", "Annihilator", "Skimmer", "Predator", "Streamliner",
+   "Tri-Trapper", "Overtrapper", "Gunner Trapper", "Mega Trapper", "Auto Trapper",
+   "Landmine", "Spike", "Auto Smasher", "Sprayer", "Auto Gunner", "Rocketeer",
+   "Auto 3", "Assassin", "Destroyer", "Gunner", "Hunter", "Overseer", "Quad Tank",
+   "Smasher, Trapper", "Tri-Angle", "Triple Shot", "Twin Flank", "Flank Guard",
+   "Machine Gun", "Sniper", "Twin", "Basic Tank"];
+
+   let randIndex = Math.floor(Math.random() * tanks.length) - 1;
+   msg.channel.send(`__**Your randomized tank:**__\n\n${tanks[randIndex]}`);
+ }
 });
 
 client.on("guildBanAdd", (guild, user) => {

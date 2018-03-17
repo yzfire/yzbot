@@ -450,8 +450,8 @@ client.on("message", msg => { // This function is called if a message is sent
         let amount = parseInt(args[0]);
         if(!amount){
           return msg.reply("you must enter a number of messages to delete!");
-        }else if(amount < 2 || amount > 99){
-          return msg.reply("you must enter a number between 2 and 99 messages!");
+        }else if(amount < 1 || amount > 99){
+          return msg.reply("you must enter a number between 1 and 99 messages!");
         }else{
           msg.channel.fetchMessages({ limit: amount+1 }).then(m=>msg.channel.bulkDelete(m));
           const rep = msg.reply(`cleared **${amount} messages** successfully!`)

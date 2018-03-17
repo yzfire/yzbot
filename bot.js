@@ -135,7 +135,8 @@ client.on("message", msg => { // This function is called if a message is sent
   			.addField(".avatar (optional mention)", "Shows the avatar of the mentioned user, or your avatar if you left out the mention.", true)
   			.addField(".serverinfo", "Prints information about the server that you sent the command in.", true)
         .addField(".uptime", "Sends the amount of time the bot has been up for in seconds. I am working on making this a more readable timestamp such as 'x hours, y minutes and z seconds'.", true)
-        .addField(".botinfo", "Sends information about the bot to the current channel.")
+        .addField(".botinfo", "Sends information about the bot to the current channel.", true)
+        .addField(".clear (amount)", "Clears the amount of messages specified from the current channel as long as the number is between 2 and 99.")
   			.addBlankField()
   			.addField("In Development", "These commands are in development and you will most likely get an error if you try to use them.", true)
   			.addField(".ping", "Returns the bot response time.", true)
@@ -441,8 +442,29 @@ client.on("message", msg => { // This function is called if a message is sent
     msg.reply("you have entered too many items to choose from!");
   }else{ // otherwise send a message back.
     msg.reply(`the bot has chosen **${choices[randIndex]}**!`);
+  }else if(command === "clear"){
+    if(yzbotGM.hasPermission("MANAGE_MESSAGES")){
+      if(guildMember.hasPermission("MANAGE_MESSAGES")){
+        let amount = parseInt(args[0]);
+        if(!amount){
+          return msg.reply("you must enter a number of messages to delete!");
+        }else if(amount < 2 || amount > 99){
+          return msg.reply("you must enter a number between 2 and 99 messages!");
+        }else{
+          msg.channel.fetchMessages({ limit: amount }).then(m=>msg.channel.bulkDelete(m));
+          const rep = msg.reply(`cleared **${amount} messages** successfully!`)
+          .then((themsg) => {
+            const del = () => themsg.delete();
+            setTimeout(del, 1000);
+          });
+        }
+      }else{
+        return msg.reply("you do not have the ``MANAGE_MESSAGES`` permission!");
+      }
+    }else{
+      return msg.reply("I do not have the ``MANAGE_MESSAGES`` permission!");
+    }
   }
-}
 });
 
 client.on("guildBanAdd", (guild, user) => {

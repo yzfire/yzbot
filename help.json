@@ -52,6 +52,12 @@
       "usage": ".botinfo",
       "description": "Sends information about the bot to the current channel.",
       "examples": [".botinfo - Sends information about the bot like how many servers it's in, when it was created, and more"]
+    },
+
+    "clear": {
+      "usage": ".clear (amount)",
+      "description": "Clears the specified amount of messages from the current channel (you and yzbot must have ``MANAGE_MESSAGES`` permission).",
+      "examples": [".clear 10 - Clears 10 messages from the current channel."]
     }
   }
 

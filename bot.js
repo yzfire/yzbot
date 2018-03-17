@@ -479,6 +479,8 @@ client.on("message", msg => { // This function is called if a message is sent
 
    let randIndex = Math.floor(Math.random() * tanks.length) - 1;
    msg.channel.send(`__**Your randomized tank:**__\n\n${tanks[randIndex]}`);
+ }else if(command === "github"){
+   msg.reply("yzbot's github: https://github.com/yzfire/yzbot");
  }
 });
 

@@ -65,5 +65,5 @@
       "description": "Sends the GitHub page for yzbot to the current channel.",
       "examples": [".github - Sends yzbot's GitHub page"]
     }
-
+  }
 }

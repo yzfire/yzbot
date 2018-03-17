@@ -392,6 +392,11 @@ client.on("message", msg => { // This function is called if a message is sent
 				status = "Do Not Disturb";
 				break;
 		}
+    const amtMembers = () => {
+      let amount = 0;
+      client.guilds.forEach(c => amount += c.memberCount);
+      return amount;
+    }
 		const embed = new Discord.RichEmbed()
 			.setTitle("Information about yzbot")
 			.setThumbnail(`${client.user.avatarURL}`)
@@ -402,6 +407,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField("Status:", `${status}`, true)
 			.addField("Servers:", `${client.guilds.size}`)
 			.addField("Channels:", `${client.channels.size}`, true)
+      .addFIeld("Members:", `${amtMembers()}`);
 			.addField("Created on:", `${client.user.createdAt}`)
 			.addField("GitHub:", "https://github.com/yzfire/yzbot")
 			.setFooter(`yzbot information (requested by ${u.username}#${u.discriminator})`)
@@ -454,6 +460,7 @@ client.on("message", msg => { // This function is called if a message is sent
           return msg.reply("you must enter a number between 1 and 99 messages!");
         }else{
           msg.channel.fetchMessages({ limit: amount+1 }).then(m=>msg.channel.bulkDelete(m));
+          msg.delete();
           const rep = msg.reply(`cleared **${amount} messages** successfully!`)
           .then((themsg) => {
             const del = () => themsg.delete();

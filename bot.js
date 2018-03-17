@@ -407,7 +407,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField("Status:", `${status}`, true)
 			.addField("Servers:", `${client.guilds.size}`)
 			.addField("Channels:", `${client.channels.size}`, true)
-      .addFIeld("Members:", `${amtMembers()}`)
+      .addField("Members:", `${amtMembers()}`)
 			.addField("Created on:", `${client.user.createdAt}`)
 			.addField("GitHub:", "https://github.com/yzfire/yzbot")
 			.setFooter(`yzbot information (requested by ${u.username}#${u.discriminator})`)

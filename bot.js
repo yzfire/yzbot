@@ -137,6 +137,7 @@ client.on("message", msg => { // This function is called if a message is sent
         .addField(".uptime", "Sends the amount of time the bot has been up for in seconds. I am working on making this a more readable timestamp such as 'x hours, y minutes and z seconds'.", true)
         .addField(".botinfo", "Sends information about the bot to the current channel.", true)
         .addField(".clear (amount)", "Clears the amount of messages specified from the current channel as long as the number is between 2 and 99.")
+        .addField(".github", "Sends yzbot's GitHub page to the current channel.")
   			.addBlankField()
   			.addField("In Development", "These commands are in development and you will most likely get an error if you try to use them.", true)
   			.addField(".ping", "Returns the bot response time.", true)
@@ -152,7 +153,7 @@ client.on("message", msg => { // This function is called if a message is sent
   			.setTimestamp()
   			u.send({embed});
     }else{
-      const acceptedList = ["help", "userinfo", "lenny", "narbrating", "ban", "avatar", "serverinfo", "uptime", "botinfo"];
+      const acceptedList = ["help", "userinfo", "lenny", "narbrating", "ban", "avatar", "serverinfo", "uptime", "botinfo", "clear", "github"];
       if(acceptedList.indexOf(cmd) !== -1){
         let usage = helpJSON["commands"][cmd]["usage"];
         let description = helpJSON["commands"][cmd]["description"];

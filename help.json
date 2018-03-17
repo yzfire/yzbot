@@ -58,7 +58,12 @@
       "usage": ".clear (amount)",
       "description": "Clears the specified amount of messages from the current channel (you and yzbot must have ``MANAGE_MESSAGES`` permission).",
       "examples": [".clear 10 - Clears 10 messages from the current channel."]
+    },
+
+    "github": {
+      "usage": ".github",
+      "description": "Sends the GitHub page for yzbot to the current channel.",
+      "examples": [".github - Sends yzbot's GitHub page"]
     }
-  }
 
 }

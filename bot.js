@@ -443,7 +443,7 @@ client.on("message", msg => { // This function is called if a message is sent
   }else{ // otherwise send a message back.
     msg.reply(`the bot has chosen **${choices[randIndex]}**!`);
   }
-  }else if(command === "clear"){
+}else if(command === "clear"){
     if(yzbotGM.hasPermission("MANAGE_MESSAGES")){
       if(guildMember.hasPermission("MANAGE_MESSAGES")){
         let amount = parseInt(args[0]);

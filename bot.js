@@ -442,6 +442,7 @@ client.on("message", msg => { // This function is called if a message is sent
     msg.reply("you have entered too many items to choose from!");
   }else{ // otherwise send a message back.
     msg.reply(`the bot has chosen **${choices[randIndex]}**!`);
+  }
   }else if(command === "clear"){
     if(yzbotGM.hasPermission("MANAGE_MESSAGES")){
       if(guildMember.hasPermission("MANAGE_MESSAGES")){

@@ -49,35 +49,64 @@ client.on("message", msg => { // This function is called if a message is sent
 	//if(msg.system) return;
 	if(command === "userinfo"){ // userinfo command
 			// display the user's info
-		let member = msg.mentions.members.first();
-		if(!member){
-			let status = u.presence.status;
-			switch(status){
-				case "online":
-					status = "Online";
-					break;
-				case "offline":
-					status = "Offline/Invisible";
-					break;
-				case "idle":
-					status = "Idle";
-					break;
-				case "dnd":
-					status = "Do Not Disturb";
-					break;
-			}
-			const embed = new Discord.RichEmbed()
-				.setTitle(`User info for ${u.tag}`)
-				.setThumbnail(`${u.avatarURL}`)
-				.addField("ID:", `${guildMember.id}`)
-				.addField("Account Created:", `${u.createdAt}`)
-				.addField("Avatar URL:", `${u.avatarURL}`)
-				.addField("Highest Role", `${guildMember.highestRole}`)
-				.addField("Join Date", `${guildMember.joinedAt}`)
-				.addField("Status:", `${status}`)
-				.setTimestamp()
-				msg.channel.send({embed});
-			console.log(`.userinfo was executed by ${u.username}`)
+      let member = msg.mentions.members.first();
+  		if(!member){ // if no member was mentioned
+  			let status = u.presence.status;
+  			switch(status){
+  				case "online":
+  					status = "Online";
+  					break;
+  				case "offline":
+  					status = "Offline/Invisible";
+  					break;
+  				case "idle":
+  					status = "Idle";
+  					break;
+  				case "dnd":
+  					status = "Do Not Disturb";
+  					break;
+  			}
+  			const embed = new Discord.RichEmbed()
+  				.setTitle(`User info for ${u.tag}`)
+  				.setThumbnail(`${u.displayAvatarURL}`)
+  				.addField("ID:", `${guildMember.id}`)
+  				.addField("Account Created:", `${u.createdAt}`)
+  				.addField("Avatar URL:", `${u.displayAvatarURL}`)
+  				.addField("Highest Role", `${guildMember.highestRole}`)
+  				.addField("Join Date", `${guildMember.joinedAt}`)
+  				.addField("Status:", `${status}`)
+  				.setTimestamp()
+  				msg.channel.send({embed});
+  			console.log(`.userinfo was executed by ${u.username}`)
+  	}else{ // a member was mentioned!
+  		let userObject = member.user; // Represents the member object as an instance of the User class, and not GuildMember
+  		let status = userObject.presence.status;
+  		switch(status){
+  			case "online":
+  				status = "Online";
+  				break;
+  			case "offline":
+  				status = "Offline/Invisible";
+  				break;
+  			case "idle":
+  				status = "Idle";
+  				break;
+  			case "dnd":
+  				status = "Do Not Disturb";
+  				break;
+  		}
+  		const embed = new Discord.RichEmbed()
+  			.setTitle(`User info for ${userObject.tag}`)
+  			.setThumbnail(`${userObject.displayAvatarURL}`)
+  			.addField("ID:", `${userObject.id}`)
+  			.addField("Account Created:", `${userObject.createdAt}`)
+  			.addField("Avatar URL:", `${userObject.displayAvatarURL}`)
+  			.addField("Highest Role:", `${member.highestRole}`)
+  			.addField("Join Date:", `${member.joinedAt}`)
+  			.addField("Status", `${status}`)
+  			msg.channel.send({embed});
+        console.log(`.userinfo was executed by ${u.username}`)
+  	}
 	}else{
 		let userObject = member.user; // Represents the member object as an instance of the User class, and not GuildMember
 		let status = userObject.presence.status;
@@ -233,12 +262,12 @@ client.on("message", msg => { // This function is called if a message is sent
     console.log(`.avatar was executed by ${u.username}`)
 		let member = msg.mentions.members.first(); // GuildMember class object
 		if(!member){
-		let embed = new Discord.RichEmbed()
-			.setTitle(`Avatar of ${u.username}#${u.discriminator}`)
-			.setImage(`${u.avatarURL}`)
-			.setFooter(`ID: ${guildMember.id}`)
-			.setTimestamp()
-			msg.channel.send({embed});
+		  let embed = new Discord.RichEmbed()
+			  .setTitle(`Avatar of ${u.username}#${u.discriminator}`)
+			  .setImage(`${u.avatarURL}`)
+			  .setFooter(`ID: ${guildMember.id}`)
+			  .setTimestamp()
+			  msg.channel.send({embed});
 		}else{
 			let userObject = member.user;
 			const embed = new Discord.RichEmbed()
@@ -319,7 +348,7 @@ client.on("message", msg => { // This function is called if a message is sent
 		msg.delete();
     console.log(`.say was executed by ${u.username}`);
 	}else if(command === "serverinfo"){
-		if(!msg.guild.available) return;
+    if(!msg.guild.available) return;
     console.log(`.serverinfo was executed by ${u.username}`);
 		let guild = msg.guild;
 		let rolesArr = guild.roles.array();
@@ -342,9 +371,9 @@ client.on("message", msg => { // This function is called if a message is sent
 				verification_level = "Very High";
 				break;
 		}
+    if(!guild.iconURL){
 		const embed = new Discord.RichEmbed()
 			.setTitle(`Information about the server ${guild.name}`) // Works
-			.setThumbnail(`${guild.iconURL}`) // Works
 			.addField("Members:", `${guild.members.size}`) // Works
 			.addField("Owner:", `${guild.owner.toString()}`) // Works
 			.addField("Region:", `${guild.region}`) // Works
@@ -355,6 +384,20 @@ client.on("message", msg => { // This function is called if a message is sent
 			.setTimestamp() // works
 			.setFooter(`Server information requested by ${u.username}#${u.discriminator}`) // works
 			msg.channel.send({embed});
+    }else{ // not dry but whatever
+      const embed = new Discord.RichEmbed()
+  			.setTitle(`Information about the server ${guild.name}`) // Works
+        .setThumbnail(`${guild.iconURL}`) // Works
+  			.addField("Members:", `${guild.members.size}`) // Works
+  			.addField("Owner:", `${guild.owner.toString()}`) // Works
+  			.addField("Region:", `${guild.region}`) // Works
+  			.addField("Number of roles:", `${guild.roles.size}`) // Works
+  			//.addField("Highest Role", `${highestRole}`) // Does NOT work
+  			.addField("Created:", `${guild.createdAt}`) // Works
+  			.addField("Verification Level:", `${verification_level}`) // Works
+  			.setTimestamp() // works
+  			.setFooter(`Server information requested by ${u.username}#${u.discriminator}`) // works
+    }
 	}else if(command === "eval"){
 		if(u.id !== devId) return;
     console.log(`.eval was executed by ${u.username}`);
@@ -377,7 +420,7 @@ client.on("message", msg => { // This function is called if a message is sent
 	  let member = msg.mentions.members.first();
 		let roleToAdd = args[1].toString(); // the third thing in the command (.addrole @yzfire (ROLE HERE))
 	}else if(command === "botinfo"){
-		let status = client.user.presence.status;
+    let status = client.user.presence.status;
 		switch(status){
 			case "online":
 				status = "Online";
@@ -392,6 +435,7 @@ client.on("message", msg => { // This function is called if a message is sent
 				status = "Do Not Disturb";
 				break;
 		}
+
     const amtMembers = () => {
       let amount = 0;
       client.guilds.forEach(c => amount += c.memberCount);
@@ -399,7 +443,7 @@ client.on("message", msg => { // This function is called if a message is sent
     }
 		const embed = new Discord.RichEmbed()
 			.setTitle("Information about yzbot")
-			.setThumbnail(`${client.user.avatarURL}`)
+			.setThumbnail(`${client.user.displayAvatarURL}`)
 			.setDescription("yzbot is an open-source Discord bot made by yzfire#6822. This bot is in heavy development, and I'm not the best developer, so don't expect big changes and many, useful features quickly. If you need any extra info about the bot, please contact yzfire#6822. Thank you.")
 			.addField("Developer:", `yzfire#6822 (<@${devId}>)`)
 			.addField("Online Since:", `${client.readyAt}`, true)
@@ -412,7 +456,6 @@ client.on("message", msg => { // This function is called if a message is sent
 			.addField("GitHub:", "https://github.com/yzfire/yzbot")
 			.setFooter(`yzbot information (requested by ${u.username}#${u.discriminator})`)
 			.setTimestamp()
-			//.addField("Members", `${client.guilds.members.size}`)
 			msg.channel.send({embed})
 	}else if(command === "setbotnick"){
 		if(u.id!==devId) return;

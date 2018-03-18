@@ -496,7 +496,7 @@ client.on("message", msg => { // This function is called if a message is sent
    "Tri-Trapper", "Overtrapper", "Gunner Trapper", "Mega Trapper", "Auto Trapper",
    "Landmine", "Spike", "Auto Smasher", "Sprayer", "Auto Gunner", "Rocketeer",
    "Auto 3", "Assassin", "Destroyer", "Gunner", "Hunter", "Overseer", "Quad Tank",
-   "Smasher, Trapper", "Tri-Angle", "Triple Shot", "Twin Flank", "Flank Guard",
+   "Smasher", "Trapper", "Tri-Angle", "Triple Shot", "Twin Flank", "Flank Guard",
    "Machine Gun", "Sniper", "Twin", "Basic Tank"];
 
    let randIndex = Math.floor(Math.random() * tanks.length) - 1;

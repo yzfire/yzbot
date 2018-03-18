@@ -106,35 +106,7 @@ client.on("message", msg => { // This function is called if a message is sent
   			.addField("Status", `${status}`)
   			msg.channel.send({embed});
         console.log(`.userinfo was executed by ${u.username}`)
-  	}else{
-		let userObject = member.user; // Represents the member object as an instance of the User class, and not GuildMember
-		let status = userObject.presence.status;
-		switch(status){
-			case "online":
-				status = "Online";
-				break;
-			case "offline":
-				status = "Offline/Invisible";
-				break;
-			case "idle":
-				status = "Idle";
-				break;
-			case "dnd":
-				status = "Do Not Disturb";
-				break;
-		}
-		const embed = new Discord.RichEmbed()
-			.setTitle(`User info for ${userObject.tag}`)
-			.setThumbnail(`${userObject.avatarURL}`)
-			.addField("ID:", `${userObject.id}`)
-			.addField("Account Created:", `${userObject.createdAt}`)
-			.addField("Avatar URL:", `${userObject.avatarURL}`)
-			.addField("Highest Role:", `${member.highestRole}`)
-			.addField("Join Date:", `${member.joinedAt}`)
-			.addField("Status", `${status}`)
-			msg.channel.send({embed});
-      console.log(`.userinfo was executed by ${u.username}`)
-	}
+  	}
 	}else if(command === "devonlycmd"){ // devonlycmd cmd
 		if(u.id !== devId){ // if the id isn't mine
 			msg.channel.send("Hey succ yzfire's long ducc like succ, you narb."); // send HATE

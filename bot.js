@@ -235,7 +235,7 @@ client.on("message", msg => { // This function is called if a message is sent
 		if(!member){
 		  let embed = new Discord.RichEmbed()
 			  .setTitle(`Avatar of ${u.username}#${u.discriminator}`)
-			  .setImage(`${u.avatarURL}`)
+			  .setImage(`${u.displayAvatarURL}`)
 			  .setFooter(`ID: ${guildMember.id}`)
 			  .setTimestamp()
 			  msg.channel.send({embed});
@@ -243,7 +243,7 @@ client.on("message", msg => { // This function is called if a message is sent
 			let userObject = member.user;
 			const embed = new Discord.RichEmbed()
 				.setTitle(`Avatar of ${userObject.username}#${userObject.discriminator}`)
-				.setImage(`${userObject.avatarURL}`)
+				.setImage(`${userObject.displayAvatarURL}`)
 				.setFooter(`ID: ${userObject.id}`)
 				.setTimestamp()
 				msg.channel.send({embed});

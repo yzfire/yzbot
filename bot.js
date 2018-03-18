@@ -106,8 +106,7 @@ client.on("message", msg => { // This function is called if a message is sent
   			.addField("Status", `${status}`)
   			msg.channel.send({embed});
         console.log(`.userinfo was executed by ${u.username}`)
-  	}
-	}else{
+  	}else{
 		let userObject = member.user; // Represents the member object as an instance of the User class, and not GuildMember
 		let status = userObject.presence.status;
 		switch(status){

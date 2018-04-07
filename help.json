@@ -1,0 +1,69 @@
+{
+  "commands": {
+    "help": {
+      "usage": ".help (optional command)",
+      "description": "The .help command is used to send help about either all commands, or one specific command. If the command argument is left out, you will receive all help in DMs, otherwise, help regarding the command that you put there will be sent to the current channel (only works for commands that are not in development and are not dev only).",
+      "examples": [".help - Sends help about all commands to your DMs", ".help ban - Sends help about .ban to the current channel."]
+    },
+
+    "userinfo": {
+      "usage": ".userinfo (optional mention)",
+      "description": "Sends information about the user mentioned to the current channel, or your own if you left out the mention.",
+      "examples": [".userinfo - Sends your user info the the current channel", ".userinfo @yzfire - Sends @yzfire's user info to the current channel"]
+    },
+
+    "lenny": {
+      "usage": ".lenny",
+      "description":"Sends a lenny face to the current channel.",
+      "examples": [".lenny - Outputs a lenny face"]
+    },
+
+    "narbrating": {
+      "usage": ".narbrating",
+      "description": "Sends your narb rating to the current channel. Just a fun command.",
+      "examples": [".narbrating - Sends your narb rating to the current channel."]
+    },
+
+    "ban": {
+      "usage": ".ban @user (reason)",
+      "description": "Bans the user mentioned from the server for the reason specified. You must specify the reason and you must have the ``BAN_MEMBERS`` permission.",
+      "examples": [".ban @yzfire Consistent rule-breaking - Bans the user @yzfire for the reason 'Consistent rule breaking'."]
+    },
+
+    "avatar": {
+      "usage": ".avatar (optional mention)",
+      "description": "Sends the avatar of the user mentioned to the current channel, or your own if the mention was left out.",
+      "examples": [".avatar - Sends your own avatar to the current channel", ".avatar @yzfire - Sends @yzfire's avatar to the current channel"]
+    },
+
+    "serverinfo": {
+      "usage": ".serverinfo",
+      "description": "Sends information about the server to the current channel.",
+      "examples": [".serverinfo - Sends server information to the current channel."]
+    },
+
+    "uptime": {
+      "usage": ".uptime",
+      "description": "Sends the uptime of the bot in seconds.",
+      "examples": [".uptime - Sends bot uptime back, for example: 'I have been online for 5812 seconds'."]
+    },
+
+    "botinfo": {
+      "usage": ".botinfo",
+      "description": "Sends information about the bot to the current channel.",
+      "examples": [".botinfo - Sends information about the bot like how many servers it's in, when it was created, and more"]
+    },
+
+    "clear": {
+      "usage": ".clear (amount)",
+      "description": "Clears the specified amount of messages from the current channel (you and yzbot must have ``MANAGE_MESSAGES`` permission).",
+      "examples": [".clear 10 - Clears 10 messages from the current channel."]
+    },
+
+    "github": {
+      "usage": ".github",
+      "description": "Sends the GitHub page for yzbot to the current channel.",
+      "examples": [".github - Sends yzbot's GitHub page"]
+    }
+  }
+}

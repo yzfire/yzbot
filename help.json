@@ -1,0 +1,224 @@
+{
+    "moderation":{
+        "ban":{
+            "usage": "(prefix)ban @member reason",
+            "example": ";ban @yzfire Persistent rule breaking.",
+            "description": "Bans a member from the server for the reason specified. Sets a mod log if you have a moderation log channel configured.",
+            "permissionyzbot": "BAN_MEMBERS"
+        },
+        "kick":{
+            "usage": "(prefix)kick @member reason",
+            "example": ";kick @yzfire Rule breaking.",
+            "description": "Kicks a member from the server for the reason specified. Sets a mod log if you have a moderation log channel configured.",
+            "permissionyzbot": "KICK_MEMBERS"
+        },
+
+        "mute":{
+            "usage": "(prefix)mute @member amount unit reason",
+            "example": ";mute @yzfire 10 minutes Spam.",
+            "description": "Mutes a member from speaking in all text channels. Please don't change the name of the role 'YzbotMuted', that it creates, otherwise, when someone else is to be muted, yzbot will recreate the role and readd it. Sets a mod log if you have a moderation log channel configured.",
+            "permissionyzbot": "MANAGE_ROLES"
+        },
+
+        "hackban":{
+            "usage": "(prefix)hackban ID reason",
+            "example": ";hackban 267670678050832384 Spammer who left my server",
+            "description": "Bans a user by ID - does not work if the member is in the server. Sets a mod log if you have a moderation log channel configured.",
+            "permissionyzbot": "BAN_MEMBERS"
+        },
+
+        "clear":{
+            "usage": "(prefix)clear amount",
+            "example": ";clear 10",
+            "description": "Clears the specified amount of messages from the current channel.",
+            "permissionyzbot": "MANAGE_MESSAGES"
+        },
+
+        "role add": {
+            "usage": "(prefix)role add @member role",
+            "example": ";role add @yzfire Moderators",
+            "description": "Adds a role to a member of the server. Role detection is case-sensitive, make sure you spell the role correctly.",
+            "permissionyzbot": "MANAGE_ROLES"
+        },
+
+        "role remove":{
+            "usage": "(prefix)role remove @member role",
+            "example": ";role remove @yzfire Moderators",
+            "description": "Removes a role from a member of the server. Role detection is case-sensitive, make sure you spell the role correctly.",
+            "permissionyzbot": "MANAGE_ROLES"
+        }
+    },
+
+    "configuration": {
+        "modlog set": {
+            "usage": "(prefix)modlog set #channel",
+            "example": ";modlog set #mod-log",
+            "description": "Sets the server's moderation log to the channel specified."
+        },
+
+        "modlog remove": {
+            "usage": "(prefix)modlog remove",
+            "example": ";modlog remove",
+            "description": "Removes the server's moderation log if it is set." 
+        },
+
+        "prefix set": {
+            "usage": "(prefix)prefix set (new prefix)",
+            "example": ";prefix set -",
+            "description": "Sets yzbot's prefix for this server."
+        },
+
+        "command disable": {
+            "usage": "(prefix)command disable (command)",
+            "example": ";command disable info roles",
+            "description": "Disables a command from being used in the current server."
+        },
+
+        "command enable": {
+            "usage": "(prefix)command enable (command)",
+            "example": ";command enable info roles",
+            "description": "Enables a previously disabled command."
+        },
+
+        "command listdisabled": {
+            "usage": "(prefix)command listdisabled",
+            "example": ";command listdisabled",
+            "description": "Lists the disabled commands in the server, if any."
+        },
+
+        "membjoinleave join message": {
+            "usage": "(prefix)membjoinleave join message (message)",
+            "example": ";membjoinleave join message Welcome, <USER> (ID: <MEMBERID>) to <SERVERNAME>! We now have <MEMBERCOUNT> members.",
+            "description": "Allows you to manage the message sent by yzbot when a member joins your server. There are a few placeholders that you can set which will be replaced with various values:\n<USER>: Replaces with the member's user mention.\n<SERVERNAME>: Replaces with the server's name.\n<MEMBERCOUNT> Replaces with the server's member count.\n<MEMBERID> Replaces with the member's user ID."
+        },
+
+        "membjoinleave join channel": {
+            "usage": "(prefix)membjoinleave join channel (channel)",
+            "example": ";membjoinleave join channel #join-messages",
+            "description": "Allows you to manage the channel yzbot sends member join messages to."
+        },
+
+        "membjoinleave leave message": {
+            "usage": "(prefix)membjoinleave leave message (message)",
+            "example": ";membjoinleave join message Goodbye, <USER> (ID: <MEMBERID>) from <SERVERNAME>! We now have <MEMBERCOUNT> members.",
+            "description": "Allows you to manage the message sent by yzbot when a member leaves your server. There are a few placeholders that you can set which will be replaced with various values:\n<USER>: Replaces with the member's user mention.\n<SERVERNAME>: Replaces with the server's name.\n<MEMBERCOUNT> Replaces with the server's member count.\n<MEMBERID> Replaces with the member's user ID."
+        },
+
+        "membjoinleave leave channel": {
+            "usage": "(prefix)membjoinleave leave channel (channel)",
+            "example": ";membjoinleave leave channel #leave-messages",
+            "description": "Allows you to manage the channel yzbot sends member leave messages to."
+        }
+    },
+
+    "fun": {
+        "lenny": {
+            "usage": "(prefix)lenny",
+            "example": ";lenny",
+            "description": "Sends a lenny face to the current channel."
+        },
+
+        "8ball": {
+            "usage": "(prefix)8ball (question)",
+            "example": ";8ball This is a test question?",
+            "description": "Provides an answer taken from the wisdom and experience of the Magic 8 Ball, to the provided question."
+        },
+
+        "choose": {
+            "usage": "(prefix)choose (option one | option two | option three) (there can be more)",
+            "example": ";choose One | Two | Three",
+            "description": "Randomly chooses one of the given options. 2 or more must be provided and you can provide as many as you like."
+        },
+
+        "ben": {
+            "usage": "(prefix)ben @user (optional reason)",
+            "example": ";ben @Potato You deserve a ben!",
+            "description": "Fake-bans the user specified from the server, and if possible, informs them through DM regarding the ben."
+        },
+
+        "quote": {
+            "usage": "(prefix)quote (message ID)",
+            "example": ";quote 431826607104327681",
+            "description": "You can use this command if the message with the ID specified is in the current channel. If it is, it will quote the message. Info about getting message IDs [here](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)"
+        }
+    },
+
+    "information": {
+        "help": {
+            "usage": "(prefix)help (category)",
+            "example": ";help mod",
+            "description": "Sends help in your DMs about the specified category.",
+            "subcommands": ["moderation", "mod", "configuration", "config", "admin", "information", "info", "fun", "yzbotrelated", "all"]
+        },
+
+        "info": {
+            "usage": "(prefix)info (category)",
+            "example": ";info user",
+            "description": "Provides information about the specified category. More information on specific categories are below.",
+            "categories": ["user", "server", "role", "bot", "channels", "roles"],
+            "catParent":{
+                "user": {
+                    "usage": "(prefix)info user (optional mention)",
+                    "example": ";info user or ;info user @yzfire",
+                    "description": "Provides information about either yourself, or the user mentioned."
+                },
+    
+                "server": {
+                    "usage": "(prefix)info server",
+                    "example": ";info server",
+                    "description": "Provides information about the current server."
+                },
+    
+                "role": {
+                    "usage": "(prefix)info role (role)",
+                    "example": ";info role Moderators",
+                    "description": "Provides information about the role specified."
+                },
+    
+                "bot": {
+                    "usage": "(prefix)info bot",
+                    "example": ";info bot",
+                    "description": "Provides information about yzbot."
+                },
+    
+                "channels": {
+                    "usage": "(prefix)info channels",
+                    "example": ";info channels",
+                    "description": "Sends the name of every single channel in the server to your DMs."
+                },
+    
+                "roles": {
+                    "usage": "(prefix)info roles",
+                    "example": ";info roles",
+                    "description": "Sends the name of every single role in the server to your DMs."
+                }
+            }
+        }
+    },
+
+    "yzbotrelated": {
+        "ping": {
+            "usage": "(prefix)ping",
+            "example": ";ping",
+            "description": "Sends the bot's response time in milliseconds (ms)."
+        },
+
+        "uptime": {
+            "usage": "(prefix)uptime",
+            "example": ";uptime",
+            "description": "Shows how long the bot has been online for."
+        },
+
+        "support gethelp": {
+            "usage": "(prefix)support gethelp (problem)",
+            "example": ";support gethelp I found a bug in the bot, here's my description of it: blah blah blah etc.",
+            "description": "Allows you to get help with yzbot."
+        },
+
+        "invite": {
+            "usage": "(prefix)invite",
+            "example": ";invite",
+            "description": "Gives an invite to add yzbot to your server, and also a link to the support server."
+        }
+    }
+}

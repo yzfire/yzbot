@@ -1,0 +1,20 @@
+{
+    "name": "yzbot",
+    "description": "The Discord bot made by yzfire.",
+    "version": "1.1.0",
+    "dependencies": {
+      "https://www.npmjs.com/package/enmap": "2.0.2",
+      "https://www.npmjs.com/package/enmap-level": "2.0.0",
+      "https://npmjs.com/package/ms": "2.1.1",
+      "https://npmjs.com/package/ordinal": "1.0.2",
+      "https://npmjs.com/package/express": "4.16.3",
+      "https://npmjs.com/package/discord.js": "11.3.2",
+      "https://npmjs.com/package/dateformat": "3.0.3"
+    },
+    "licenses": [
+      {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    ]
+  }

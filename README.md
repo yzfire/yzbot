@@ -1,11 +1,6 @@
-# yzbot
-A discord bot made by yzfire#6822. This is my first real bot, so please be patient with regards to speed of development and things such as that. 
-It features:  
-• userinfo command with optional argument to mention a user.  
-• help command to give some help and (a bit) of information about yzbot.  
-• A prefix "."  
-• ban command to allow you to ban miscreants. (You need to mention a valid user and provide a reason).  
-• serverinfo command to provide information about the server  
+# THIS REPO IS OUTDATED
+Yzbot is currently running on the code hosted in this repository: https://github.com/yzfire/yzbot-2  
+If you want to see my rewrite code visit here: https://github.com/yzfire/yzbot-2/tree/V2.5  
+Finally, if you want to see a much CLEANER, CLASS-BASED AND BETTER style of coding, visit: https://github.com/yzfire/selfbot  
 
-I am working on more features that will hopefully be coming to the bot soon.
-
+I will offer no support for any code here, and do not judge my JavaScript skills based on the code here. Thanks. 
